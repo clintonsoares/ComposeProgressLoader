@@ -12,12 +12,16 @@ import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.cscoding.customcomposeloader.presentation.theme.ComposeProgressLoaderTheme
 import com.cscoding.customcomposeloader.presentation.theme.OffWhite_Loading_Bg
-import com.cscoding.customcomposeloader.presentation.ui.unindexedProgress.CirclesLoader
+import com.cscoding.customcomposeloader.presentation.ui.unindexedProgress.CascadingDotLoader
+import com.cscoding.customcomposeloader.presentation.ui.unindexedProgress.CircularMotionLoader
 import com.cscoding.customcomposeloader.utils.Constants
 
+/**
+ * Coded By: Clinton Soares
+ * Date: 5/4/22
+ */
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,7 +29,7 @@ class MainActivity : ComponentActivity() {
             ComposeProgressLoaderTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(color = MaterialTheme.colors.background) {
-                    ComposeLoaderView(Constants.CIRCLES_LOADER)
+                    ComposeLoaderView()
                 }
             }
         }
@@ -33,7 +37,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun ComposeLoaderView(loaderType: Int){
+fun ComposeLoaderView(){
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -41,18 +45,6 @@ fun ComposeLoaderView(loaderType: Int){
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        when(loaderType){
-            Constants.CIRCLES_LOADER -> {
-                CirclesLoader()
-            }
-        }
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    ComposeProgressLoaderTheme {
-        CirclesLoader()
+        CircularMotionLoader()
     }
 }
